@@ -10,7 +10,9 @@ export default function Home() {
       <Banner/>
       <div style={{margin:'20px', display:'flex', flexDirection:'row', flexWrap:'wrap',
     justifyContent:'space-around', alignContent:'space-around'}}>
-        <ProductCard/>
+        <ProductCard hospitalName='Chulalongkorn Hospital' imgSrc='/img/hospital/chula.jpg'/>
+        <ProductCard hospitalName='Rajvithi Hospital' imgSrc='/img/hospital/rajavithi.jpg'/>
+        <ProductCard hospitalName='Thammasart University Hospital' imgSrc='/img/hospital/thammasart.jpg'/>
       </div>
     </main>
   )

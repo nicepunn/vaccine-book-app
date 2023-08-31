@@ -9,8 +9,8 @@ export default function Banner() {
             fill={true} 
             objectFit='cover'/>
             <div className={styles.bannerText}>
-                <h1>Announcement</h1>
-                <p>
+                <h1 className='text-4xl font-medium'>Announcement</h1>
+                <p className='text-l'>
                 We would like to announce 
                 the vaccination service aimed at 
                 promoting health and safety for everyone 
