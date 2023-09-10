@@ -7,7 +7,7 @@ export default function Banner() {
             <Image src='/img/bg.jpg' 
             alt='cover' 
             fill={true} 
-            objectFit='cover'/>
+            style={{objectFit:"cover"}}/>
             <div className={styles.bannerText}>
                 <h1 className='text-4xl font-medium'>Announcement</h1>
                 <p className='text-l'>
