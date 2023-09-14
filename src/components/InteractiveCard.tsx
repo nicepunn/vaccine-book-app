@@ -26,7 +26,7 @@ export default function InteractiveCard({children, contentName}: {children: Reac
     }
 
     return (
-        <div className='w-1/5 h-[300px] rounded-lg shadow-lg bg-white'
+        <div className='w-1/5 h-[300px] rounded-lg shadow-lg bg-white content-center'
         onClick={() => onHospSelected()} onMouseOver={(e)=>onCardMouseAction(e)}
         onMouseOut={(e) => onCardMouseAction(e)}>
             {children}
