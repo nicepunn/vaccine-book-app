@@ -1,23 +1,9 @@
 'use client'
 import { useReducer, useState } from "react";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 export default function CardPanal() {
-
-    // const compareReducer = (compareList:Set<string>, action:{type:string, cardName:string})=> {
-    //         switch(action.type) {
-    //             case 'add': {
-    //                 return new Set(compareList.add(action.cardName))
-    //             }
-    //             case 'remove': {
-    //                 compareList.delete(action.cardName)
-    //                 return new Set(compareList)
-    //             }
-    //             default: return compareList
-    //         }
-    // }
-    // const [compareList, dispatchCompare] = useReducer(compareReducer, new Set<string>)
-
 
     const ratingReducer = (keyPair: Map<string, number>, action:{type:string, hospitalName:string, rating:number}) => {
         switch(action.type) {
@@ -36,23 +22,31 @@ export default function CardPanal() {
 
     const [currentStar, setCurrentStar] = useState<Number>();
 
+    const mockHosRepo = [
+        {hid:"001", hname:'Chulalongkorn Hospital', image:'/img/hospital/chula.jpg'},
+        {hid:"002", hname:'Rajvithi Hospital', image:'/img/hospital/rajavithi.jpg'},
+        {hid:"003", hname:'Thammasart University Hospital', image:'/img/hospital/thammasart.jpg'}
+    ]
+
     return (
         <div>
             <div style={{margin:'20px', display:'flex', flexDirection:'row', flexWrap:'wrap',
             justifyContent:'space-around', alignContent:'space-around'}}>
-                {/* <ProductCard hospitalName='Chulalongkorn Hospital' imgSrc='/img/hospital/chula.jpg'
-                onCompare={(hospital:string)=>{dispatchCompare({type:'add', cardName:hospital})}}/>
-                <ProductCard hospitalName='Rajvithi Hospital' imgSrc='/img/hospital/rajavithi.jpg'
-                onCompare={(hospital:string)=>{dispatchCompare({type:'add', cardName:hospital})}}/>
-                <ProductCard hospitalName='Thammasart University Hospital' imgSrc='/img/hospital/thammasart.jpg'
-                onCompare={(hospital:string)=>{dispatchCompare({type:'add', cardName:hospital})}}/> */}
+                {
+                    mockHosRepo.map((hosItem)=>(
+                        <Link href={`/hospital/${hosItem.hid}`} className="w-1/5">
+                            <ProductCard hospitalName={hosItem.hname} imgSrc={hosItem.image} currentStar={keyPair.get(hosItem.hname)??0}
+                            onRating={(hospital:string, newRating:number)=>{dispatchKeyPair({type:'change', hospitalName:hospital, rating:newRating})}}/>
+                        </Link>
+                    ))
+                }
 
-                <ProductCard hospitalName='Chulalongkorn Hospital' imgSrc='/img/hospital/chula.jpg' currentStar={keyPair.get('Chulalongkorn Hospital')??0}
+                {/* <ProductCard hospitalName='Chulalongkorn Hospital' imgSrc='/img/hospital/chula.jpg' currentStar={keyPair.get('Chulalongkorn Hospital')??0}
                 onRating={(hospital:string, newRating:number)=>{dispatchKeyPair({type:'change', hospitalName:hospital, rating:newRating})}}/>
                 <ProductCard hospitalName='Rajvithi Hospital' imgSrc='/img/hospital/rajavithi.jpg' currentStar={keyPair.get('Rajvithi Hospital')??0}
                 onRating={(hospital:string, newRating:number)=>{dispatchKeyPair({type:'change', hospitalName:hospital, rating:newRating})}}/>
                 <ProductCard hospitalName='Thammasart University Hospital' imgSrc='/img/hospital/thammasart.jpg' currentStar={keyPair.get('Thammasart University Hospital')??0}
-                onRating={(hospital:string, newRating:number)=>{dispatchKeyPair({type:'change', hospitalName:hospital, rating:newRating})}}/>
+                onRating={(hospital:string, newRating:number)=>{dispatchKeyPair({type:'change', hospitalName:hospital, rating:newRating})}}/> */}
             </div>
 
             <div className="w-full text-xl font-medium">Key Pair: {keyPair.size}</div>
@@ -61,13 +55,6 @@ export default function CardPanal() {
                     {hospital[0] + " Rating = " + hospital[1]}
                 </div>
             )}
-            
-            {/* <div className="w-full text-xl font-medium">Compare List: {compareList.size}</div>
-            { Array.from(compareList).map((hospital)=>
-                <div key={hospital} onClick={()=>dispatchCompare({type:'remove', cardName:hospital})}>
-                    {hospital}
-                </div>
-            )} */}
         </div>
     )
 }

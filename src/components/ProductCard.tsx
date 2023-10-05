@@ -43,10 +43,11 @@ export default function ProductCard({hospitalName, imgSrc, onRating, currentStar
                 console.log("new value onChange = " + newValue);
                 onRating(hospitalName, newValue);
             }}
+
             onClick={(e)=>{
-                e.stopPropagation();
-                console.log("hospital rate onClick = " + hospitalRate);
+                e.stopPropagation()
             }}
+
             />
 
             {/* <MyRating hospitalName={hospitalName} onRating={onRating} /> */}
