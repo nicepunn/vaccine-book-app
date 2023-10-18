@@ -3,11 +3,7 @@ import getHospital from "@/libs/getHospital"
 
 export default async function HospitalDetailPage({params}: {params: {hid: string}}) {
     
-    const mockHosRepo = new Map()
-    mockHosRepo.set("001", {hname:'Chulalongkorn Hospital', image:'/img/hospital/chula.jpg'})
-    mockHosRepo.set("002", {hname:'Rajvithi Hospital', image:'/img/hospital/rajavithi.jpg'})
-    mockHosRepo.set("003", {hname:'Thammasart University Hospital', image:'/img/hospital/thammasart.jpg'})
-    
+        
     const hospitalDetail = await getHospital(params.hid)
     
     return (
