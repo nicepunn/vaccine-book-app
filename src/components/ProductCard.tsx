@@ -7,7 +7,7 @@ import { useState } from 'react';
 import MyRating from './MyRating';
 
 export default function ProductCard({hospitalName, imgSrc, onRating, currentStar}
-    : {hospitalName:string, imgSrc:string, onRating:Function, currentStar:number}) {
+    : {hospitalName:string, imgSrc:string, onRating?:Function, currentStar:number}) {
 
     function onHospSelected() {
         alert("You selected " + hospitalName)
@@ -35,20 +35,22 @@ export default function ProductCard({hospitalName, imgSrc, onRating, currentStar
             hover:bg-indigo-600 mx-2 my-2 px-1 py-1 text-white shadow-sm'
             onClick={(e)=>{e.stopPropagation(); onCompare(hospitalName)}}>compare</button> */}
             
-            <Rating className='mx-2 my-2 px-1 py-1 w-fit'
-            name="simple-controlled" size='small'
-            value={hospitalRate}
-            onChange={(event, newValue) => {
-                setHospitalRate(newValue);
-                console.log("new value onChange = " + newValue);
-                onRating(hospitalName, newValue);
-            }}
-
-            onClick={(e)=>{
-                e.stopPropagation()
-            }}
-
-            />
+            {
+                onRating? <Rating className='mx-2 my-2 px-1 py-1 w-fit'
+                name="simple-controlled" size='small'
+                value={hospitalRate}
+                onChange={(event, newValue) => {
+                    setHospitalRate(newValue);
+                    console.log("new value onChange = " + newValue);
+                    onRating(hospitalName, newValue);
+                }}
+    
+                onClick={(e)=>{
+                    e.stopPropagation()
+                }}
+    
+                />: ''
+            }
 
             {/* <MyRating hospitalName={hospitalName} onRating={onRating} /> */}
         </InteractiveCard>
