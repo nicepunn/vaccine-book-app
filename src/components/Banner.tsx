@@ -4,12 +4,16 @@ import styles from './banner.module.css';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { Rating } from '@mui/material';
+import { useSession } from 'next-auth/react';
 
 export default function Banner() {
 
     const covers = ['/img/bg.jpg', '/img/bg2.jpg', '/img/bg3.jpg']
     const [index, setIndex] = useState(0);
     const router = useRouter();
+
+    const {data: session} = useSession();
+	console.log(session?.user.token);
 
     // const [value, setValue] = useState<number | null>()
 
@@ -30,6 +34,15 @@ export default function Banner() {
                 effort to combat disease outbreaks and 
                 create a secure environment for all of us.
                 </p>
+
+                {
+					session?
+					<div className='z-30 absolute top-0 right-10 font-semibold text-xl'>
+						Hello {session.user?.name}
+					</div>
+					:null
+				}
+                
             </div>
             <button className='bg-white text-cyan-600 border border-cyan-600
             font-semibold py-2 m-2 rounded z-30 absolute bottom-0 right-0
