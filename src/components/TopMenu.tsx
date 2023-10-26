@@ -24,6 +24,9 @@ export default async function TopMenu() {
 						Sign-in</div>
 				</Link>
 			}
+            <Link href='/mybooking'
+					className='flex items-center h-full px-2'
+			>Booked</Link>
 
             <Link href='/'>
                 <Image src='/img/bottle.jpg' className={styles.logoimg} 

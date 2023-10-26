@@ -14,7 +14,7 @@ export default async function HospitalCatalog({hospitalJson}: {hospitalJson: Obj
             justifyContent:'space-around', alignContent:'space-around'}}>
                 {
                     hospitalJsonReady.data.map((hosItem: Object)=>(
-                        <Link href={`/hospital/${hosItem._id}`} className="w-1/5">
+                        <Link href={`/hospital/${hosItem._id}`} key={hosItem._id} className="w-1/5">
                             <ProductCard hospitalName={hosItem.name} imgSrc={hosItem.picture}/>
                         </Link>
                     ))

@@ -2,6 +2,7 @@ import LocationDateReserve from "@/components/LocationDateReserve";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import getHospitals from "@/libs/getHospitals";
 
 export default async function Booking() {
 
@@ -9,6 +10,8 @@ export default async function Booking() {
 	if(!session || !session.user.token)	return null
 	const profile = await getUserProfile(session.user.token)
 	var createdAt = new Date(profile.data.createdAt)
+
+    const hospitals = await getHospitals();
 
     return (
         <main className="w-[100%] flex flex-col items-center space-y-4 text-center">
@@ -41,11 +44,11 @@ export default async function Booking() {
 				:null
 			}
 
-            <div className="w-fit space-y-2">
-                <div className="text-md text-left text-gray-600">
+            <div className="w-full space-y-2 flex flex-col">
+                <div className="z-30 text-md text-left text-gray-600">
                     Pick-Up Date and Location
                 </div>
-                <LocationDateReserve/>
+                <LocationDateReserve hospitals={hospitals}/>
 
                 {/* <div className="text-md text-left text-gray-600">
                     Return Date and Location
@@ -53,9 +56,9 @@ export default async function Booking() {
                 <LocationDateReserve/> */}
             </div>
 
-            <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 py-2 text-white shadow-sm">
+            {/* <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 py-2 text-white shadow-sm">
                 Book
-            </button>
+            </button> */}
             
         </main>
     )
