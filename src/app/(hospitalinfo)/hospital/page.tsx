@@ -4,7 +4,7 @@ import HospitalCatalog from "@/components/HospitalCatalog";
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import addHospitalForm from "@/components/addHospitalForm";
+import AddHospitalForm from "@/components/addHospitalForm";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
 
@@ -22,7 +22,7 @@ export default async function Hospital() {
                 <HospitalCatalog hospitalJson={hospitals}/>
                     {
                         (profile?.data.role == "admin")?
-                        <addHospitalForm/>
+                        <AddHospitalForm/>
                         :null
                     }
             </Suspense>

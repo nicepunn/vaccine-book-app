@@ -3,10 +3,7 @@ import Hospital from "@/db/models/Hospital"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 
-
-export default function addHospitalForm() {
-
-
+export default function AddHospitalForm() {
 	const addHospital = async (addHospital: FormData) => {
 		"use server"
 		const name = addHospital.get("name")
@@ -90,4 +87,3 @@ export default function addHospitalForm() {
 		</form>
 	)
 }
-
