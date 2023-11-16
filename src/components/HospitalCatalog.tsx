@@ -8,7 +8,7 @@ export default async function HospitalCatalog({hospitalJson}: {hospitalJson: Obj
     
     return (
         <>
-        Explore {hospitalJsonReady.count} medels in our catalog
+        Explore {hospitalJsonReady.count} hospitals in our catalog
 
         <div style={{margin:'20px', display:'flex', flexDirection:'row', flexWrap:'wrap',
             justifyContent:'space-around', alignContent:'space-around'}}>
